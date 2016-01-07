@@ -1,0 +1,57 @@
+html, body {
+    position: relative;
+    height: 100%;
+}
+body {
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color:#000;
+    margin: 0;
+    padding: 0;
+}
+
+input.form-control {
+    border: 1px solid #757e91;
+    height: 40px
+}
+
+.pp-menu {
+   margin-top: 10px;
+}
+
+.login_container{
+    width:50%;
+    margin-top:80px;
+    background-color: #eee;
+
+}
+.login_form{
+    margin-top: 50px;
+    padding-right: 30px;
+    border-right: 1px solid #aaa;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 500px;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
