@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/style.css">
+	<title>登录</title>
+</head>
+<body >
+	<div class="pp-container container ">
+
+		<div class="row">
+	  		<h2>跑跑测评</h2>
+		</div>
+		<% if(typeof errorMsgs !== 'undefined' && null !== errorMsgs) { %>
+			<div id="errors" class="row">
+				<div class="alert alert-danger col-sm-7">
+					<% for(i= 0; i< errorMsgs.length; i++) { %>
+							<div class="glyphicon glyphicon-remove-sign gi-x"></div><%= errorMsgs[i] %><br>
+					<% } %>
+				</div>
+			</div>
+		<% } %>
+		<div class="row">
+			<div class="col-sm-7 pp-box">
+			  <form id="form" role="form" class="pp-form"  method="post" action="/users/login">
+			  	<% var username %>
+			    <div class="form-group has-feedback" >
+			    	<span class="glyphicon glyphicon-user form-control-feedback"></span>
+				    <input type="text" name="username" class="form-control" placeholder="用户名" value="<%=username %>"/>
+			    </div>
+				<% var password %>
+			    <div class="form-group has-feedback" >
+			    	<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+				    <input type="password" name="password" class="form-control" placeholder="密码" value = "<%= password %>"/>
+			    </div>
+				
+				<% var rememberMe %>
+			    <div class="checkbox">
+			      <label style="color: #888"><input type="checkbox" name="rememberMe" <%if(rememberMe) {%> checked <% } %> >
+			      	记住用户名</label>
+			      <label class="pull-right" style="color: #888"><a href="/users/forget" style="color: #888;">忘记密码</a>
+			    </div>
+				<div class="text-center"  style="margin-top:30px;">
+				    <button type="submit" class="btn btn-primary">
+				    	<span class="glyphicon glyphicon-log-in"></span>
+				    	登 录
+				    </button>
+				    <span class="pull-right" style="line-height: 42px">
+				    	<a href="/users/signup" >注册</a>
+					</span>
+				</div>
+			  </form>
+			</div>
+
+			<div class="col-sm-4">
+				
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+</html>

@@ -3,7 +3,7 @@ html, body {
     height: 100%;
 }
 body {
-    background: #eee;
+    background: #eceef1;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     font-size: 14px;
     color:#000;
@@ -11,25 +11,54 @@ body {
     padding: 0;
 }
 
-input.form-control {
-    border: 1px solid #757e91;
-    height: 40px
+.no-padding {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
+.no-float {
+    float : none !important;;
+}
+
+#form input {
+    border: 1px solid #757e91;
+    border-radius: 0px;
+    box-shadow: none;
+    background: #eceef1;
+}
+.gi-x {
+    font-size: 1.3em;
+    margin-right: 10px;
+}
 .pp-menu {
    margin-top: 10px;
 }
 
-.login_container{
+.pp-container{
     width:50%;
     margin-top:80px;
     background-color: #eee;
-
 }
-.login_form{
-    margin-top: 50px;
-    padding-right: 30px;
-    border-right: 1px solid #aaa;
+
+.pp-box {
+    border:1px solid #757e91;
+    padding:20px;
+}
+
+.pp-container-2 {
+    width: 30%;
+    margin-top:80px;
+    border: 1px solid #aaa;
+    background-color: #eceef1;
+}
+.pp-container-2 .alert {
+    margin-top: 20px;
+}
+
+.pp-form{
+ /*   margin-top: 10px; */
+    padding: 30px 20px;
+/*    border-right: 1px solid #aaa; */
 }
 
 .swiper-container {

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/style.css">
+	<title>邮箱验证</title>
+</head>
+<body >
+	<div class="pp-container-2 container ">
+		<div class="alert alert-success">
+		    验证码已经发送到指定邮箱，请打开邮箱，<br>复制验证码，粘贴到文本框中！
+		</div>
+		<div class="jumbotron" style="border: 1px solid #aaa;">
+			<div class="row">
+		  		<p>请输入验证码:</p>
+			</div>
+			<% if(typeof errorMsgs !== 'undefined' && null !== errorMsgs) { %>
+				<div id="errors" class="row">
+					<div class="alert alert-danger">
+						<% for(i= 0; i< errorMsgs.length; i++) { %>
+								<div class="glyphicon glyphicon-remove-sign gi-x"></div><%= errorMsgs[i] %><br>
+						<% } %>
+					</div>
+				</div>
+			<% } %>
+			<div class="row">
+				  <form id="form" role="form" method="post" action="/users/validate_email">
+					<% var email %>
+					<input type="hidden" name="email" value="<%=email%>" />
+
+				    <div class="form-group has-feedback" >
+				    	<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+					    <input type="text" name="code" class="form-control" placeholder="验证码" />
+				    </div>
+
+					<div class="text-center">
+					    <button type="submit" class="btn btn-primary">
+					    	<span class="glyphicon glyphicon-log-in"></span>
+					    	验证
+					    </button>
+					</div>
+
+				  </form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

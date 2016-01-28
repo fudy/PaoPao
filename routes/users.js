@@ -1,39 +1,21 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport')
-var LocalStrategy = require('passport-local').Strategy;
+var UserController = require('../controllers/user-controller');
 
+/* login */
+router.get('/login', UserController.getLogin);
+router.post('/login', UserController.postLogin);
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-	  console.log(username)
-	  console.log(password)
-	  var user = { username: username, password: password}
-	  console.log(user)
-	  if (user.username != 'fudli') {
-	    return done(null, false, { message: 'Incorrect username.' });
-	  }
-	  if (user.password != '123456') {
-	    return done(null, false, { message: 'Incorrect password.' });
-	  }
-	  return done(null, user);
-  }
-));
+/* signup */
+router.get('/signup', UserController.getSignup);
+router.post('/signup', UserController.postSignup);
 
+router.get('/captcha', UserController.getCaptcha);
 
-router.get('/login', function(req, res, next){
-  res.render('users/login', { title: 'Users' })
-
-}).post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
-);
-
-router.get('/signup', function(req, res, next) {
-	res.render('users/signup')
-}).post('/signup', function(req, res, next) {
-
-});
+/* forget, then reset password */
+router.get('/forget', UserController.getForget);
+router.post('/forget', UserController.postForget);
+router.post('/validate_email', UserController.postValidateEmail);
+router.post('/reset_password', UserController.postResetPassword);
 
 module.exports = router;
