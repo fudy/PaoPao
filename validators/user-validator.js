@@ -16,6 +16,7 @@ var getErrorMsgArrar = function(req) {
 
 exports.validateEmailCode = function(req) {
 	req.checkBody('code', "邮箱验证码不正确").equals(req.session.code);
+	req.checkBody('code', "验证码不能为空").notEmpty();
 	var errs = getErrorMsgArrar(req);
 	return errs;
 }

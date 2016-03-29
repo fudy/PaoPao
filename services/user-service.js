@@ -13,7 +13,7 @@ exports.validate = function(user, callback) {
 		var err = "用户名或密码不正确！";
 		if (retUser) {
 			if (CryptoJS.SHA1(user.password) == retUser.password) {
-				callback(null);
+				callback(null, retUser);
 			} else {
 				callback(err);
 			}			

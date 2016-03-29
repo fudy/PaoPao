@@ -7,113 +7,25 @@
 	<link rel="stylesheet" href="/stylesheets/style.css">  
 	<script src="/javascripts/jquery.min.js"></script>  	
 	<script src="/javascripts/bootstrap.min.js"></script> 
+	<script src="/javascripts/reactjs/build/common-bundle.js"></script>
+	<script src="/javascripts/reactjs/build/signup-bundle.js"></script>
 	<title>注册</title>
-	<script>
-		$(document).ready(function(){
-			// refresh captcha
-			$("#captcha").click(function() {
-				var captchaRefreshUrl = '/users/captcha' + '?_=' + new Date().getMilliseconds()
-				$(this).attr('src', captchaRefreshUrl);
-			})
-
-			$("#agreement").change(function() {
-    			if(this.checked) {
-    				console.log('checked')
-    				$("button[type='submit']").prop('disabled', false);
-    			} else {
-    				console.log('unchecked')
-    				$("button[type='submit']").prop('disabled', true);
-    			}
-			});
-		})
-	</script>
 </head>
 <body >
-	<div class="pp-container container ">
-
-		<div class="row">
-	  		<h2>跑跑测评</h2>
-		</div>
-		<% if(typeof errorMsgs !== 'undefined' && null !== errorMsgs) { %>
-			<div id="errors" class="row">
-				<div class="alert alert-danger col-sm-7">
-					<% for(i= 0; i< errorMsgs.length; i++) { %>
-							<div class="glyphicon glyphicon-remove-sign gi-x"></div><%= errorMsgs[i] %><br>
-					<% } %>
-				</div>
-			</div>
-		<% } %>
-
-		<div class="row">
-			<div class="col-sm-7 pp-box">
-				<class="row">
-					<form id="form" role="form" class="pp-form" method="post">
-
-				  		<% var username %>
-					    <div class="form-group has-feedback" >
-					    	<span class="glyphicon glyphicon-user form-control-feedback"></span>
-						    <input type="text" name="username" class="form-control" placeholder="用户名(6-40位中英文、数字、下划线)" 
-						    value="<%=username %>"/>
-					    </div>
-
-				    	<% var email %>
-					    <div class="form-group has-feedback" >
-					    	<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-						    <input type="text" name="email" class="form-control" placeholder="邮箱" value="<%=email %>" />
-					    </div>
-
-						<% var password %>
-					    <div class="form-group has-feedback" >
-					    	<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-						    <input type="password" name="password" class="form-control" placeholder="密码(6-40位数字、英文、特殊符号)" 
-						    value = "<%= password %>"/>
-					    </div>
-
-						<% var repassword %>
-					    <div class="form-group has-feedback" >
-					    	<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-						    <input type="password" name="repassword" class="form-control" placeholder="确认密码" value = "<%=repassword%>"/>
-					    </div>
-
-						<% var captcha %>
-					    <div class="form-group" >
-					    	<div class="row">
-						    	<div class="col-sm-6">
-							    	<input type="text" name="captcha" class="form-control" placeholder="验证码" value="<%=captcha%>"/>
-						    	</div>
-						    	<div class="col-sm-6">
-						    		 <img id="captcha" src="/users/captcha" alt="正在获取验证码..." style="cursor: pointer;"
-						    		 height="35px" width="100px" /> 
-						    	</div>
-					    	</div>
-					    </div>
-
-						<% include _user_protocol.html %>
-
-					    <div class="form-group" >
-					    	<div class="checkbox">
-					    		<label>
-						   			<input id="agreement" type="checkbox" value="">
-
-						   			我同意跑跑测评<a data-toggle="modal" data-target="#myModal">用户协议</a> </label>
-					    	</div>
-					    </div>							
-
-					    <div class="form-group">
-					    	<div class="text-center">
-					    		<button type="submit" class="btn btn-primary" disabled>
-							    	<span class="glyphicon glyphicon-log-in"></span>
-							    	注 册
-								</button>
-								<a href="/users/login" class="pull-right" style="line-height: 42px">登录</a>
-					    	</div>
-						</div>
-
-					</form>
-				</div>
-			</div>
-		</div>
+	<div style="position:fixed; left: 30%;top: 10%">
+		<div id="signup_box" />
 	</div>
+	<% var username, email, password, repassword, errorMsgs%>
+	<script>
+		ReactComponents.signup.renderSignupBox('signup_box',"<%=username%>", "<%=email%>", "<%=password%>", "<%=repassword%>", <%- errorMsgs || '[]' %>);
+		$("#agreement").change(function() {
+			if(this.checked) {
+				$("button[type='submit']").prop('disabled', false);
+			} else {
+				$("button[type='submit']").prop('disabled', true);
+			}
+		});
+	</script>
 
 </body>
 </html>

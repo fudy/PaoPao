@@ -1,4 +1,5 @@
 var express = require('express');
+
 var router = express.Router();
 var UserController = require('../controllers/user-controller');
 
@@ -15,7 +16,9 @@ router.get('/captcha', UserController.getCaptcha);
 /* forget, then reset password */
 router.get('/forget', UserController.getForget);
 router.post('/forget', UserController.postForget);
+
 router.post('/validate_email', UserController.postValidateEmail);
+
 router.post('/reset_password', UserController.postResetPassword);
 
 module.exports = router;

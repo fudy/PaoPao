@@ -16,6 +16,7 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+/* will be called by passport.authenticate */
 passport.use(new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password'
@@ -25,25 +26,25 @@ passport.use(new LocalStrategy({
 	  logger.info("user", user, {})
 
 	  logger.info(user,{})
-	  userService.validate(user, function(err) {
+	  userService.validate(user, function(err, retUser) {
 	  	if (err) {
-	  		return done(null, false, { errorMsgs: [err]});
+	  		return done(null, false, { errorMsgs: JSON.stringify([err])});
 	  	} else {
-	  		return done(null, user);
+	  		return done(null, retUser);
 	  	}
 	  });
   }
 ));
 
 
-exports.getLogin = function(req, res, next){
-	res.render('users/login', { username: req.cookies.rememberMe });
-}
-
 var passportMessageBugFix = function(params) {
 	if (typeof params.message != "undefined" && "Missing credentials" == params.message) {
-		params.errorMsgs = ["用户名或密码不能为空!"];
+		params.errorMsgs = JSON.stringify(['用户名或密,码不能为空!']);
 	}
+}
+
+exports.getLogin = function(req, res, next){
+	res.render('users/login', { username: req.cookies.rememberMe });
 }
 
 /* passport custom callback */
@@ -54,18 +55,23 @@ exports.postLogin = function(req, res, next) {
     	if (typeof info !== "undefined") {
     		var params = _.extend(info,req.body);
     		passportMessageBugFix(params);
-    		logger.info (params,{});
+    		logger.info (params.errorMsgs);
     		return res.render('users/login', params);
     	} else {
-    		return res.render('users/login'); 
+    		return res.render('users/login');
     	}
     }
     req.logIn(user, function(err) {
-      if (err) { return next(err); }
-      if (req.body.rememberMe) {
-      	res.cookie('rememberMe', req.body.username);
-      }
-      return res.redirect('/users/' + user.username);
+		if (err) { return next(err); }
+		if (req.body.rememberMe) {
+			res.cookie('rememberMe', req.body.username);
+		}
+		logger.info('user login', user, {});
+		if(user.level == 10) {
+			return res.redirect('/articles/article');
+		} else {
+			return res.redirect('/users/' + user.username);
+		}
     });
   })(req, res, next);
 };
@@ -103,7 +109,7 @@ exports.postForget = function(req, res, next) {
 	logger.info ("reqest body is : ", req.body, {});
 	var errs = userValidator.validateForget(req);
 	if (errs) {
-		var retParams = _.extend({errorMsgs: errs}, req.body);
+		var retParams = _.extend({errorMsgs: JSON.stringify(errs)}, req.body);
 		res.render('users/forget', retParams);
 	} else {
 		userService.findByEmail(req.body.email, function(err, user) {
@@ -122,7 +128,7 @@ exports.postForget = function(req, res, next) {
 				});
 				res.render('users/email_validation', {email : req.body.email});		
 			} else {
-				var retParams = _.extend({errorMsgs: ['该邮箱没有注册任何用户']}, req.body);
+				var retParams = _.extend({errorMsgs: JSON.stringify(['该邮箱没有注册任何用户'])}, req.body);
 				res.render('users/forget', retParams);	
 			}
 		});
@@ -135,7 +141,7 @@ exports.postValidateEmail = function(req, res, next) {
 	logger.info ("reqest body is : ", req.body, {});
 	var errs = userValidator.validateEmailCode(req);
 	if (errs) {
-		var retParams = _.extend({errorMsgs: errs}, req.body);
+		var retParams = _.extend({errorMsgs: JSON.stringify(errs)}, req.body);
 		res.render('users/email_validation', retParams);
 	} else {
 		req.session.code = null;
@@ -148,12 +154,12 @@ exports.postValidateEmail = function(req, res, next) {
 exports.postResetPassword = function(req, res, next) {
 	var errs = userValidator.validateResetPassword(req);
 	if (errs) {
-		var retParams = _.extend({errorMsgs: errs}, req.body);
+		var retParams = _.extend({errorMsgs: JSON.stringify(errs)}, req.body);
 		res.render('users/reset_password', retParams);
 	} else {
 		userService.resetPasswordByEmail(req.session.email, req.body.password, function(err) {
 			if(err) {
-				var retParams = _.extend({errorMsgs: [err]}, req.body);
+				var retParams = _.extend({errorMsgs: JSON.stringify([err])}, req.body);
 				res.render('users/reset_password', retParams);
 			} else {
 				res.render('users/reset_password_success');
@@ -171,21 +177,21 @@ exports.postSignup = function(req, res, next) {
 	}
 	var errs = userValidator.validateSignup(req);
 	if (errs) {
-		var retParams = _.extend({errorMsgs: errs}, user);
+		var retParams = _.extend({errorMsgs: JSON.stringify(errs)}, user);
 		console.log(retParams);
 		res.render('users/signup', retParams);
 	} else {
 		userService.signup(user, function(errs) {
 			if (errs) {
 				logger.error('failed to signup', errs)
-				res.render('users/signup', {errorMsgs: errs})
+				res.render('users/signup', {errorMsgs: JSON.stringify(errs)})
 			} else {
 				logger.info('signup succeeded!')
 				res.render('users/signup_success', {email : user.email})
 			}
 		});
 	}
-	
-	
-} 
+}
+
+
                                                                   

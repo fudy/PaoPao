@@ -8,6 +8,9 @@ module.exports =  {
 		        pass: 'upultkiedtgxcssm'
 		    }
 		}
-	}
+	},
+	upload: {
+        url: 'http://localhost:3000/uploads'
+    }
 
 }

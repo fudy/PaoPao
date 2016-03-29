@@ -1,12 +1,12 @@
 require('assert')
 var userService = require('../../services/user-service')
+var _ = require('underscore');
 var logger = require('../../common/logger')(module);
 
 describe('testLog', function() {
 	it('should log', function(done) {
-		logger.info("hello world!");
+		logger.info(_.extend({a:3}, {a:5, b:6}));
 		done()
-
 	})
 });
 

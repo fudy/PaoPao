@@ -1,3 +1,4 @@
+var logger = require('../common/logger')(module);
 var mongoose = require('mongoose');
 var User = require('./user');
 
@@ -7,13 +8,13 @@ mongoose.connect('mongodb://localhost/dev', {
   }
 }, function (err) {
   if (err) {
-    logger.error('connect mongoose error: ', err.message);
+    logger.error("Can't connect mongodb, error message: ", err.message);
     process.exit(1);
   }
 });
 
 mongoose.connection.once('open', function() {
-  console.log("we're connected!")
+  logger.info("Mongodb connected!")
 });
 
 exports.User = User;

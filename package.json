@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "babel-preset-react": "^6.3.13",
     "body-parser": "~1.13.2",
     "captchapng": "0.0.1",
     "connect-flash": "^0.1.1",
@@ -17,14 +18,26 @@
     "express": "~4.13.1",
     "express-session": "^1.13.0",
     "express-validator": "^2.18.0",
+    "fs-extra": "^0.26.5",
     "mongoose": "^4.3.4",
     "morgan": "~1.6.1",
+    "multer": "^1.1.0",
     "nodemailer": "^2.0.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
     "serve-favicon": "~2.3.0",
     "underscore": "^1.8.3",
     "validator": "^4.5.0",
     "winston": "^2.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.1",
+    "ckeditor": "^4.5.7",
+    "css-loader": "^0.23.1",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.12"
   }
 }

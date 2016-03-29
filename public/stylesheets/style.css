@@ -23,11 +23,11 @@ body {
 #form input {
     border: 1px solid #757e91;
     border-radius: 0px;
-    box-shadow: none;
+
     background: #eceef1;
 }
 .gi-x {
-    font-size: 1.3em;
+    font-size: 1.2em;
     margin-right: 10px;
 }
 .pp-menu {
