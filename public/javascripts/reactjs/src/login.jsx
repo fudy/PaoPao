@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var ErrorMessageBox = require('./message-box').ErrorMessageBox;
+var ErrorMessageBox = require('./component/message-box').ErrorMessageBox;
 var ReactBootstrap = require('react-bootstrap'),
     Input = ReactBootstrap.Input,
     Button = ReactBootstrap.Button,
@@ -24,7 +24,7 @@ var LoginForm = React.createClass({
         }
 
         return (
-                <form id="form" method="post" action="/users/login" style={this.formStyle}>
+                <form id="form" method="post" action="/login" style={this.formStyle}>
                     <Input name="username" type="text" placeholder="用户名" defaultValue={properties.username}
                            feedbackIcon={<Glyphicon glyph="user" />} hasFeedback />
 
@@ -37,14 +37,14 @@ var LoginForm = React.createClass({
                           记住用户名
                       </label>
                       <label className="pull-right" >
-                          <a href="/users/forget" style={{color: '#777'}}>忘记密码</a>
+                          <a href="/forget" style={{color: '#777'}}>忘记密码</a>
                       </label>
                     </span>
 
                     <div className="text-center"  style={{marginTop: '30px'}}>
                         <Button type="submit" bsStyle="primary"><Glyphicon glyph="log-in" /> 登 录</Button>
                         <span className="pull-right" >
-                            <a href="/users/signup" style={{lineHeight: '42px'}}>注册</a>
+                            <a href="/signup" style={{lineHeight: '42px'}}>注册</a>
                         </span>
                     </div>
                 </form>

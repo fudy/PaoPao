@@ -33,7 +33,7 @@ var CaptchaInput = React.createClass({
                         <input type="text" name={this.props.name} className="form-control" placeholder="验证码" />
                     </div>
                     <div className="col-sm-6">
-                        <Captcha src="/users/captcha"/>
+                        <Captcha src="/captcha"/>
                     </div>
                 </div>
             </div>

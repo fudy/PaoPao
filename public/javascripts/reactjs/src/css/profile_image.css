@@ -1,0 +1,26 @@
+.pic {
+    position:relative
+}
+
+.pic a{
+    background-color: #000;
+    color: #fff;
+    line-height: 160px;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0;
+    float: left;
+    text-decoration: none;
+}
+
+.pic a:hover {
+    opacity: 0.8;
+}
+
+.pic a, .pic img {
+    height: 160px;
+    width: 160px;
+    position: absolute;
+    left:0;
+    top:0;
+}

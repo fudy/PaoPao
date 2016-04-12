@@ -2,14 +2,15 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
+    context: __dirname + '/public/javascripts/reactjs/src',
     entry: {
-        common: './public/javascripts/reactjs/src/common.jsx',
-        editor: './public/javascripts/reactjs/src/editor.jsx',
-        login: './public/javascripts/reactjs/src/login.jsx',
-        signup: './public/javascripts/reactjs/src/signup.jsx',
-        forget: './public/javascripts/reactjs/src/forget.jsx',
-        emailValidation: './public/javascripts/reactjs/src/email-validation.jsx',
-        resetPasswordBox: './public/javascripts/reactjs/src/reset-password-box.jsx'
+        editor: './editor.jsx',
+        login: './login.jsx',
+        signup: './signup.jsx',
+        forget: './forget.jsx',
+        emailValidation: './email-validation.jsx',
+        resetPasswordBox: './reset-password-box.jsx',
+        user: './user.jsx'
     },
     output: {
         path: __dirname + '/public/javascripts/reactjs/build',

@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var ErrorMessageBox = require('./message-box').ErrorMessageBox;
+var ErrorMessageBox = require('./component/message-box').ErrorMessageBox;
 var ReactBootstrap = require('react-bootstrap'),
     Input = ReactBootstrap.Input,
     Button = ReactBootstrap.Button,

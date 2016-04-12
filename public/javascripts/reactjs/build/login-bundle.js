@@ -73,7 +73,7 @@ var ReactComponents = ReactComponents || {}; ReactComponents["login"] =
 
 	        return React.createElement(
 	            'form',
-	            { id: 'form', method: 'post', action: '/users/login', style: this.formStyle },
+	            { id: 'form', method: 'post', action: '/login', style: this.formStyle },
 	            React.createElement(Input, { name: 'username', type: 'text', placeholder: '用户名', defaultValue: properties.username,
 	                feedbackIcon: React.createElement(Glyphicon, { glyph: 'user' }), hasFeedback: true }),
 	            React.createElement(Input, { name: 'password', type: 'password', placeholder: '密 码', defaultValue: properties.password,
@@ -92,7 +92,7 @@ var ReactComponents = ReactComponents || {}; ReactComponents["login"] =
 	                    { className: 'pull-right' },
 	                    React.createElement(
 	                        'a',
-	                        { href: '/users/forget', style: { color: '#777' } },
+	                        { href: '/forget', style: { color: '#777' } },
 	                        '忘记密码'
 	                    )
 	                )
@@ -111,7 +111,7 @@ var ReactComponents = ReactComponents || {}; ReactComponents["login"] =
 	                    { className: 'pull-right' },
 	                    React.createElement(
 	                        'a',
-	                        { href: '/users/signup', style: { lineHeight: '42px' } },
+	                        { href: '/signup', style: { lineHeight: '42px' } },
 	                        '注册'
 	                    )
 	                )

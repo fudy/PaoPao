@@ -1,9 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Captcha = require('./captcha').Captcha;
-var CaptchaInput = require('./captcha').CaptchaInput;
-var ErrorMessageBox = require('./message-box').ErrorMessageBox;
-var UserProtocal = require('./protocal').UserProtocal;
+var Captcha = require('./component/captcha').Captcha;
+var CaptchaInput = require('./component/captcha').CaptchaInput;
+var ErrorMessageBox = require('./component/message-box').ErrorMessageBox;
+var UserProtocal = require('./component/protocal').UserProtocal;
 
 var ReactBootstrap = require('react-bootstrap'),
     Input = ReactBootstrap.Input,
@@ -66,7 +66,7 @@ var SignupForm = React.createClass({
                 <span style={{marginLeft:"15px"}}>我同意跑跑测评<UserProtocal /></span>
 
                 <div className="form-group" style={{marginTop:"20px"}}>
-                    <a href="/users/login" className="pull-right" style={{lineHeight: "42px"}}>登录</a>
+                    <a href="/login" className="pull-right" style={{lineHeight: "42px"}}>登录</a>
                     <Button type="submit" bsStyle="primary" style={{marginLeft:"40%"}} disabled><Glyphicon glyph="log-in" /> 注 册</Button>
                 </div>
             </form>

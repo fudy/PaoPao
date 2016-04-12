@@ -130,7 +130,7 @@ var ReactComponents = ReactComponents || {}; ReactComponents["signup"] =
 	                { className: 'form-group', style: { marginTop: "20px" } },
 	                React.createElement(
 	                    'a',
-	                    { href: '/users/login', className: 'pull-right', style: { lineHeight: "42px" } },
+	                    { href: '/login', className: 'pull-right', style: { lineHeight: "42px" } },
 	                    '登录'
 	                ),
 	                React.createElement(
@@ -36913,7 +36913,7 @@ var ReactComponents = ReactComponents || {}; ReactComponents["signup"] =
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-sm-6' },
-	                    React.createElement(Captcha, { src: '/users/captcha' })
+	                    React.createElement(Captcha, { src: '/captcha' })
 	                )
 	            )
 	        );
