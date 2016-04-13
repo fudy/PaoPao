@@ -15,6 +15,8 @@
 or in development model (without restart after modify some code)
 
     ./bin/supervisor_start.sh
+    
+after started, you can access http://localhost:3000
   
 ## start webpack (build reactjs if you changed the code under reactjs/src)
 
