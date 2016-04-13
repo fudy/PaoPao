@@ -16,7 +16,6 @@ module.exports.renderLeftMenu = function (id) {
     )
 }
 
-
 module.exports.renderProfileImageBox = function (id) {
     ReactDOM.render(
         <ProfileImageBox />,
@@ -26,7 +25,13 @@ module.exports.renderProfileImageBox = function (id) {
 
 module.exports.renderUserMenu = function(id) {
     ReactDOM.render(
-        <UserMenu />,
+        <UserMenu items={[
+        {href: "?page=0", title: "我的发帖", active: true},
+        {href: "?page=1", title: "我的回帖"},
+        {href: "?page=2", title: "我的投票"},
+        {href: "?page=3", title: "我的收藏"},
+        {href: "?page=4", title: "我要发帖"}
+        ]}/>,
         document.getElementById(id)
     )
 }

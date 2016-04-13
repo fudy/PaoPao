@@ -60,7 +60,7 @@ var ReactComponents = ReactComponents || {}; ReactComponents["user"] =
 	};
 
 	module.exports.renderUserMenu = function (id) {
-	    ReactDOM.render(React.createElement(UserMenu, null), document.getElementById(id));
+	    ReactDOM.render(React.createElement(UserMenu, { items: [{ href: "?page=0", title: "我的发帖", active: true }, { href: "?page=1", title: "我的回帖" }, { href: "?page=2", title: "我的投票" }, { href: "?page=3", title: "我的收藏" }, { href: "?page=4", title: "我要发帖" }] }), document.getElementById(id));
 	};
 
 /***/ },
@@ -38524,62 +38524,42 @@ var ReactComponents = ReactComponents || {}; ReactComponents["user"] =
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 	__webpack_require__(419);
-	//TODO
+
 	UserMenu = React.createClass({
 	    displayName: 'UserMenu',
 
 	    render: function () {
+	        var activeStyle = { color: "#005", textDecoration: "none", borderBottom: "3px solid green" };
+	        var items = this.props.items.map(function (item, i) {
+	            if (item.active == true) {
+	                return React.createElement(
+	                    'li',
+	                    { key: i },
+	                    React.createElement(
+	                        'a',
+	                        { href: item.href, style: activeStyle },
+	                        item.title
+	                    )
+	                );
+	            } else {
+	                return React.createElement(
+	                    'li',
+	                    { key: i },
+	                    React.createElement(
+	                        'a',
+	                        { href: item.href },
+	                        item.title
+	                    )
+	                );
+	            }
+	        });
 	        return React.createElement(
 	            'div',
 	            { className: 'menu' },
 	            React.createElement(
 	                'ul',
 	                null,
-	                React.createElement(
-	                    'li',
-	                    null,
-	                    React.createElement(
-	                        'a',
-	                        { href: '#', style: { color: "#005", textDecoration: "none", borderBottom: "3px solid green" } },
-	                        '我的发帖'
-	                    )
-	                ),
-	                React.createElement(
-	                    'li',
-	                    null,
-	                    React.createElement(
-	                        'a',
-	                        { href: '#' },
-	                        '我的回帖'
-	                    )
-	                ),
-	                React.createElement(
-	                    'li',
-	                    null,
-	                    React.createElement(
-	                        'a',
-	                        { href: '#' },
-	                        '我的投票'
-	                    )
-	                ),
-	                React.createElement(
-	                    'li',
-	                    null,
-	                    React.createElement(
-	                        'a',
-	                        { href: '#' },
-	                        '我的收藏'
-	                    )
-	                ),
-	                React.createElement(
-	                    'li',
-	                    null,
-	                    React.createElement(
-	                        'a',
-	                        { href: '/articles/article' },
-	                        '我要发帖'
-	                    )
-	                )
+	                items
 	            )
 	        );
 	    }
